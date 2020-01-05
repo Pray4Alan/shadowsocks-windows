@@ -22,7 +22,7 @@ namespace Shadowsocks.Controller
         {
             get
             {
-                if (string.IsNullOrEmpty(_cachedPacSecret))
+                if (_cachedPacSecret.IsNullOrEmpty())
                 {
                     var rd = new byte[32];
                     RNG.GetBytes(rd);
@@ -118,7 +118,7 @@ namespace Shadowsocks.Controller
                 // parse request header
                 for (int i = 1; i < lines.Length; i++)
                 {
-                    if (string.IsNullOrEmpty(lines[i]))
+                    if (lines[i].IsNullOrEmpty())
                         continue;
 
                     string[] kv = lines[i].Split(new char[] { ':' }, 2);
